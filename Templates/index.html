@@ -1,11 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Habit Tracker</title>
 </head>
 <body>
     
+    <h1>hallo {{ username }}!</h1>
+    
+
+    <div style="margin-bottom: 20px;">
+        <progress value="{{ fortschritt }}" max="100"></progress>
+        <span>{{ fortschritt }}% erledigt</span>
+    </div>
+    
+    <div style="background: white; padding: 20px; margin-top: 20px;">
+        <h2>neues to-do hinzufügen</h2>
+        
+        <form action="/add" method="POST">
+            <input type="hidden" name="typ" value="todo">
+            <input type="text" name="inhalt" placeholder="eingabefeld" required>
+            <button type="submit">hinzufügen</button>
+        </form>
+
+        <ul>
+            {% for todo in todos %}
+                <li style="list-style: none; margin-bottom: 10px;">
+                    
+                    <a href="/toggle/{{ todo[0] }}" style="text-decoration: none; margin-right: 10px;">
+
+                        {% if todo[2] == 1 %}
+                            [✓]
+                        {% else %}
+                            [ ]
+                        {% endif %}
+                    </a>
+                    
+                    {% if todo[2] == 1 %}
+                        <del style="color: #888;">{{ todo[1] }}</del>
+                    {% else %}
+                        <span>{{ todo[1] }}</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
 </body>
 </html>
