@@ -149,11 +149,69 @@ def index():
         return render_template("index.html", username=aktuelle_user, todos=alle_todos, fortschritt=prozent)
 
     return """
-        <h1>bitte einloggen oder account erstellen</h1>
-        <form action="/login" method="POST">
-            <input type="text" name="username" placeholder="benutzername" required>
-            <button type="submit">go</button>
-        </form>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://googleapis.com" rel="stylesheet">
+        <style>
+            body {
+                background-color: #121214;
+                color: white;
+                font-family: 'Montserrat', sans-serif;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                margin: 0;
+            }
+            h1 { font-weight: 700; margin-bottom: 20px; }
+            .login-box {
+                background-color: #1a1a1e;
+                padding: 30px;
+                border-radius: 16px;
+                border: 1px solid #29292e;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                width: 300px;
+                box-sizing: border-box;
+            }
+            input {
+                background: #121214;
+                border: 1px solid #29292e;
+                color: white;
+                padding: 12px;
+                border-radius: 8px;
+                font-family: 'Montserrat';
+                font-size: 16px;
+            }
+            button {
+                background: white;
+                color: black;
+                border: none;
+                padding: 12px;
+                border-radius: 8px;
+                font-weight: 600;
+                cursor: pointer;
+                font-family: 'Montserrat';
+                font-size: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>habit tracker</h1>
+        <div class="login-box">
+            <h2 style="margin: 0; font-size: 16px; font-weight: 600; color: #a8a8b3;">bitte einloggen</h2>
+            <form action="/login" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" name="username" placeholder="benutzername" required>
+                <button type="submit">go</button>
+            </form>
+        </div>
+    </body>
+    </html>
     """
 
 

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <!-- Google Fonts: Montserrat laden -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracker</title>
+    
+    <!-- 1. Google Fonts Links -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">    
     
-    <!-- FontAwesome Link für die Icons -->
-    <link rel="stylesheet" href="https://cloudflare.com">
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habit Tracker</title>
+    <!-- 2. FontAwesome Link repariert (Vollständiger Pfad zu den Icons) -->
+    <script src="https://jsdelivr.net" crossorigin="anonymous"></script>
 
     <style>
         body {
@@ -71,7 +71,7 @@
             <h2>to-do's</h2>
 
             <div style="margin-bottom: 25px;">
-                <progress value="{{ fortschritt }}" max="100"></progress>
+                <progress value="{{ fortschritt }}" max="100" style="accent-color: #ffffff;"></progress>
                 <span style="margin-left: 10px;">{{ fortschritt }}% erledigt</span>
             </div>
             
@@ -79,7 +79,6 @@
                 <input type="hidden" name="typ" value="todo">
                 <input type="text" name="inhalt" placeholder="eingabefeld" required style="background: #121214; border: 1px solid #29292e; color: white; padding: 10px; border-radius: 8px; font-family: 'Montserrat'; flex-grow: 1; box-sizing: border-box; height: 38px;">
                 
-                <!-- Hier wurde die Klasse für das Icon im i-Tag repariert -->
                 <button type="submit" style="background: #ffffff; color: #000000; border: none; padding: 0 15px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; height: 38px; box-sizing: border-box;">
                     <i class="fa-solid fa-arrow-right-to-bracket"></i>
                 </button>
@@ -88,17 +87,14 @@
             <ul>
                 {% for todo in todos %}
                     <li>
-                        <!-- Link nutzt die ID an Stelle 0 -->
-                        <a href="/toggle/{{ todo[0] }}" style="text-decoration: none; margin-right: 25px; color: white; font-weight: bold; font-family: monospace;">
-                            <!-- Weiche prüft den Status an Stelle 2 -->
+                        <a href="/toggle/{{ todo[0] }}" style="text-decoration: none; margin-right: 15px; color: white; display: flex; align-items: center; font-size: 18px;">
                             {% if todo[2] == 1 %}
-                                [✓]
+                                <i class="fa-regular fa-square-check" style="color: #ffffff;"></i>
                             {% else %}
-                                [ ]
+                                <i class="fa-regular fa-square" style="color: #a8a8b3;"></i>
                             {% endif %}
                         </a>
                         
-                        <!-- Text holt den Inhalt an Stelle 1 -->
                         {% if todo[2] == 1 %}
                             <del style="color: #888;">{{ todo[1] }}</del>
                         {% else %}
